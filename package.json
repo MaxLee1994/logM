@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "description": "file logger by Max",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/MaxLee1994/logM.git"
   },
   "keywords": [
     "logger"
@@ -12,7 +13,9 @@
   "author": "Max <max@vzhibo.tv>",
   "license": "ISC",
   "dependencies": {
-      "nodemailer": "1.2.0"
+      "nodemailer": "1.2.0",
+      "colors": "0.6.2",
+      "moment": "2.8.1"
   },
   "devDependencies": {
       "expect.js": "0.3.1"
