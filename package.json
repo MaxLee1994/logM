@@ -10,5 +10,11 @@
     "logger"
   ],
   "author": "Max <max@vzhibo.tv>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+      "nodemailer": "1.2.0"
+  },
+  "devDependencies": {
+      "expect.js": "0.3.1"
+  }
 }
