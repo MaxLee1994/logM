@@ -1,0 +1,14 @@
+{
+  "name": "logM",
+  "version": "0.0.0",
+  "description": "file logger by Max",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "logger"
+  ],
+  "author": "Max <max@vzhibo.tv>",
+  "license": "ISC"
+}
