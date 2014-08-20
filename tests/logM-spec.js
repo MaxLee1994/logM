@@ -17,6 +17,32 @@ divider.start('logger console effect');
 
 divider.end();
 
+
+
+divider.start('mail test');
+
+    var mail = require('../src/mail');
+    
+    mail.send('max@vzhibo.tv',
+              'test mail 1',
+              '我爱刘花花');
+    mail.send('max@vzhibo.tv',
+              'test mail 1',
+              '我爱刘花花');
+    var action = function() {
+        mail.send('max@vzhibo.tv',
+              'test mail 1',
+              '我爱刘花花');
+    }
+    setTimeout(action, 2000);
+    
+    mail.send('max@vzhibo.tv',
+              'test mail 2',
+              '我草刘花花');
+
+divider.end();
+
+
 divider.start('file-appender write to file');
 
     var fileAppender = require('../src/file-appender').create('log/', 'test');
@@ -33,9 +59,6 @@ divider.start('file-appender write to file');
     setInterval(action, 1000);
 
 divider.end();
-
-
-
 
 
 

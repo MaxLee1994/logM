@@ -6,29 +6,73 @@
  */
 
 var mail = require('nodemailer');
+var mailList = require('./mail-list');
+
+var mailQueue = {};
+var MAIL_INTERVAL = 30 * 60 * 1000;
 
 var transporter = mail.createTransport({
-    host: 'smtp.exmail.qq.com',
-    port: 465,
+    host: mailList.FROM_HOST,
+    port: mailList.FROM_PORT,
     auth: {
-        user: 'max@vzhibo.tv',
-        pass: 'wxzswbhddf15gb'
+        user: mailList.FROM,
+        pass: mailList.FROM_PWD
     },
     secure: true
 })
 
 
 var send = function(to, subject, content, success, error) {
-    transporter.sendMail({
-        from: 'max@vzhibo.tv',
+    
+    // add to queue
+    var obj = {
         to: to,
         subject: subject,
-        text: content
+        content: content,
+        success: success,
+        error: error
+    };
+    
+    if(mailQueue[subject] == undefined) {      
+        sendMail(obj);
+    } else {
+        var timeDiff = new Date().valueOf() - mailQueue[subject].timestamp;
+        if(timeDiff > MAIL_INTERVAL) {
+            sendMail(obj);
+        }
+    }
+    
+    refreshMailQueueObj(subject, obj);
+}
+// refresh mailQueue obj 
+function refreshMailQueueObj(subject, obj) {
+    if(mailQueue[subject] == undefined) {
+        mailQueue[subject] = {};
+    }
+    
+    mailQueue[subject].to = obj.to;
+    mailQueue[subject].subject = obj.subject;
+    mailQueue[subject].content = obj.content;
+    mailQueue[subject].success = obj.success;
+    mailQueue[subject].error = obj.error;
+    mailQueue[subject].timestamp = new Date().valueOf();
+}
+
+// send mail
+function sendMail(obj) {
+    transporter.sendMail({
+        from: mailList.FROM,
+        to: obj.to,
+        subject: obj.subject,
+        text: obj.content
     }, function(err) {
         if(!err) {
-            if(success) success();
+            console.log('mail to ' + obj.to + ', subject is ' + obj.subject + ' success!');
+            if(obj.success) obj.success();
         } else {
-            if(error) error(err);
+            console.log('mail to ' + obj.to + ', subject is ' + obj.subject + ' fail!');
+            console.error(err);
+            if(obj.error) obj.error(err);
         }
     })
 }
