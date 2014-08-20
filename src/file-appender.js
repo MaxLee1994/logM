@@ -18,7 +18,7 @@ var FileAppender = {
         var LOG_CACHE_MAX_NUM = 100;
 
         var autoWriteIndex;
-        var WRITE_TO_FILE_LATENCY = 3000;
+        var WRITE_TO_FILE_LATENCY = 30000;
         
         var today = moment();
         var LOG_FILE_POSTFIX = '.log';
@@ -40,7 +40,9 @@ var FileAppender = {
         function writeToFile() {
             if(logCacheNum == 0) return;
                 
-            var filename = dir + prefix + today.format('YYYY-MM-DD') + LOG_FILE_POSTFIX;
+            midnight();
+            var filename = dir + prefix + '-' + today.format('YYYY-MM-DD') + LOG_FILE_POSTFIX;
+            console.log(filename);
             fs.appendFile(filename, logCache, function(err) {
                 if(err) {
 //                    mail.send('max@vzhibo.tv',
@@ -57,6 +59,15 @@ var FileAppender = {
             logCache = '';
             logCacheNum = 0;
 
+        }
+        
+        // check if midnight come
+        function midnight() {
+            var now = moment();
+            if(today.isBefore(now, 'day')) {
+                console.log('midnight comes');
+                today = now;
+            }
         }
 
         // check if logCacheNum reaches max
