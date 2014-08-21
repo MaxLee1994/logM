@@ -1,3 +1,4 @@
+// config sample
 {
     "logger1": {
         "exclude": [
@@ -15,10 +16,10 @@
     },
     "logger3": {
         "logDir": "log/",
-        "filePrefix": "fuck"
+        "filePrefix": "tssss"
     },
     "logger4": {
         "logDir": "logg/",
-        "filePrefix": "fuck"
+        "filePrefix": "tss"
     }
 }

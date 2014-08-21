@@ -2,7 +2,7 @@
   "name": "logm",
   "version": "0.2.2",
   "description": "file logger by Max",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/MaxLee1994/logM.git"
