@@ -22,32 +22,52 @@ var Logger = {
     create: function(category, fileAppender, mask) {
         var obj = {};
         
-        obj.log = function(text) {
+        obj.log = function() {
             if(mask & loggerLevel.LOG_MASK) return;
+            var text = '';
+            for(var i in arguments) {
+                text += arguments[i] + ' ';
+            }
             
             console.log(getPrefix(loggerLevel.LOG).log + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.LOG) + text);
         }
-        obj.debug = function(text) {
+        obj.debug = function() {
             if(mask & loggerLevel.DEBUG_MASK) return;
+            var text = '';
+            for(var i in arguments) {
+                text += arguments[i] + ' ';
+            }
             
             console.log(getPrefix(loggerLevel.DEBUG).debug + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.DEBUG) + text);
         }
-        obj.warn = function(text) {
+        obj.warn = function() {
             if(mask & loggerLevel.WARN_MASK) return;
+            var text = '';
+            for(var i in arguments) {
+                text += arguments[i] + ' ';
+            }
             
             console.warn(getPrefix(loggerLevel.WARN).warn + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.WARN) + text);
         }
-        obj.error = function(text) {
+        obj.error = function() {
             if(mask & loggerLevel.ERROR_MASK) return;
+            var text = '';
+            for(var i in arguments) {
+                text += arguments[i] + ' ';
+            }
             
             console.error(getPrefix(loggerLevel.ERROR).error + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.ERROR) + text);
         }
-        obj.trace = function(text) {
+        obj.trace = function() {
             if(mask & loggerLevel.TRACE_MASK) return;
+            var text = '';
+            for(var i in arguments) {
+                text += arguments[i] + ' ';
+            }
             
             console.trace(getPrefix(loggerLevel.TRACE).trace + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.TRACE) + text);
