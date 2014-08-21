@@ -8,6 +8,7 @@
 var colors = require('colors');
 var moment = require('moment');
 var loggerLevel = require('./logger-level');
+var mail = require('./mail');
 
 colors.setTheme({
     log: 'grey',
@@ -50,6 +51,17 @@ var Logger = {
             
             console.trace(getPrefix(loggerLevel.TRACE).trace + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.TRACE) + text);
+        }
+        obj.notifyMaintainer = function(to, subject, content, noQueue) {
+            var mailObj = {
+                to: to,
+                subject: subject,
+                content: content,
+                error: function(err) {
+                    obj.error('mail to ' + to + ', subject is ' + subject + ' fail!' + 'error info: ' + err);
+                }
+            };
+            mail.send(mailObj, noQueue);
         }
         
         // get yyyy-MM-dd HH:mm:ss format moment

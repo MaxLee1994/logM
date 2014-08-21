@@ -25,25 +25,18 @@ var transporter = mail.createTransport({
 var send = function(obj, noQueue) {
     
     // add to queue
-    var obj = {
-        to: to,
-        subject: subject,
-        content: content,
-        success: success,
-        error: error
-    };
     if(noQueue) {
         sendMail(obj);
-    } else if(mailQueue[subject] == undefined) {      
+    } else if(mailQueue[obj.subject] == undefined) {      
         sendMail(obj);
     } else {
-        var timeDiff = new Date().valueOf() - mailQueue[subject].timestamp;
+        var timeDiff = new Date().valueOf() - mailQueue[obj.subject].timestamp;
         if(timeDiff > MAIL_INTERVAL) {
             sendMail(obj);
         }
     }
     
-    refreshMailQueueObj(subject, obj);
+    refreshMailQueueObj(obj.subject, obj);
 }
 // refresh mailQueue obj 
 function refreshMailQueueObj(subject, obj) {
