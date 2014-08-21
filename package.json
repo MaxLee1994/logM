@@ -1,6 +1,6 @@
 {
   "name": "logm",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "file logger by Max",
   "main": "src/index.js",
   "repository": {

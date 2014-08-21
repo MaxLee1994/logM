@@ -1,4 +1,4 @@
-# File Logger for `Node.js` @version 0.2.4
+# File Logger for `Node.js` @version 0.2.5
 
 ## installation
     npm install logm
