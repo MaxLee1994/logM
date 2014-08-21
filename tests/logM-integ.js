@@ -8,7 +8,7 @@ var expect = require('expect.js');
 
 describe('logM integration test', function() {
     var logM = require('../src/index');
-    logM.configure('../logM-config.json');
+    logM.configure('logM-config.json');
     
     var TIMEOUT = 31 * 1000;
     

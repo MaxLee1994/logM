@@ -8,12 +8,15 @@
 var fileAppender = require('./file-appender');
 var loggerLevel = require('./logger-level');
 var logger = require('./logger');
+var fs = require('fs');
 
 var loggers = {};
 
 // read `logM-config.json` and generate loggers
 var configure = function(configFile) {
-    var config = require(configFile);
+    var configFileContent = fs.readFileSync(configFile);
+    var config = JSON.parse(configFileContent);
+    
     for(var i in config) {
 
         // construct fileAppender
