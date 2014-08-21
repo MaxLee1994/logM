@@ -18,26 +18,36 @@ colors.setTheme({
 });
 
 var Logger = {
-    create: function(category, fileAppender) {
+    create: function(category, fileAppender, mask) {
         var obj = {};
         
         obj.log = function(text) {
+            if(mask & loggerLevel.LOG_MASK) return;
+            
             console.log(getPrefix(loggerLevel.LOG).log + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.LOG) + text);
         }
         obj.debug = function(text) {
+            if(mask & loggerLevel.DEBUG_MASK) return;
+            
             console.log(getPrefix(loggerLevel.DEBUG).debug + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.DEBUG) + text);
         }
         obj.warn = function(text) {
+            if(mask & loggerLevel.WARN_MASK) return;
+            
             console.warn(getPrefix(loggerLevel.WARN).warn + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.WARN) + text);
         }
         obj.error = function(text) {
+            if(mask & loggerLevel.ERROR_MASK) return;
+            
             console.error(getPrefix(loggerLevel.ERROR).error + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.ERROR) + text);
         }
         obj.trace = function(text) {
+            if(mask & loggerLevel.TRACE_MASK) return;
+            
             console.trace(getPrefix(loggerLevel.TRACE).trace + text);
             if(fileAppender) fileAppender.appendToFile(getPrefix(loggerLevel.TRACE) + text);
         }

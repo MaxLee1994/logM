@@ -9,6 +9,7 @@
 var fs = require('fs');
 var moment = require('moment');
 var mail = require('./mail');
+var mailList = require('./mail-list');
 
 var FileAppender = {
     create: function(dir, prefix) {
@@ -25,11 +26,10 @@ var FileAppender = {
 
         // constructor
         autoWriteIndex = setInterval(writeToFile, WRITE_TO_FILE_LATENCY);
-        fs.exists(dir, function(exits) {
-            if(!exits) {
-                fs.mkdirSync(dir);
-            }
-        })
+        var exits = fs.existsSync(dir);
+        if(!exits) {
+            fs.mkdirSync(dir);
+        }
 
         obj.appendToFile = function(text) {
             logCache += (text + '\n');
@@ -45,11 +45,14 @@ var FileAppender = {
             console.log(filename);
             fs.appendFile(filename, logCache, function(err) {
                 if(err) {
-//                    mail.send('max@vzhibo.tv',
-//                              'LogM System Error',
-//                              'file-appender.writeToFile > fs.appendFile error\n' +
-//                              filename + '\n' +
-//                              logCache);
+                    var obj = {
+                        to: mailList.MAINTAINER,
+                        subject: 'LogM System Error',
+                        content: 'file-appender.writeToFile > fs.appendFile error\n' +
+                                 filename + '\n' +
+                                 logCache
+                    };
+                    mail.send(obj);
                     console.trace('write to file error');
                 } else {
                     console.log('write to file success');

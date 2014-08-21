@@ -1,0 +1,15 @@
+[2014-08-21 11:28:42] logger4 - LOG: this is log 16
+[2014-08-21 11:28:42] logger4 - ERROR: this is log 17
+[2014-08-21 11:28:42] logger4 - WARN: this is log 18
+[2014-08-21 11:28:42] logger4 - DEBUG: this is log 19
+[2014-08-21 11:28:42] logger4 - TRACE: this is log 20
+[2014-08-21 12:55:34] logger4 - LOG: this is log 16
+[2014-08-21 12:55:34] logger4 - ERROR: this is log 17
+[2014-08-21 12:55:34] logger4 - WARN: this is log 18
+[2014-08-21 12:55:34] logger4 - DEBUG: this is log 19
+[2014-08-21 12:55:34] logger4 - TRACE: this is log 20
+[2014-08-21 12:58:36] logger4 - LOG: this is log 16
+[2014-08-21 12:58:36] logger4 - ERROR: this is log 17
+[2014-08-21 12:58:36] logger4 - WARN: this is log 18
+[2014-08-21 12:58:36] logger4 - DEBUG: this is log 19
+[2014-08-21 12:58:36] logger4 - TRACE: this is log 20

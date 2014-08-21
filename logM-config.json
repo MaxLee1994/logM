@@ -1,0 +1,24 @@
+{
+    "logger1": {
+        "exclude": [
+            "DEBUG"
+        ],
+        "logDir": "log/",
+        "filePrefix": "test"
+    },
+    "logger2": {
+        "exclude": [
+            "LOG", "WARN"
+        ],
+        "logDir": "log/",
+        "filePrefix": "test"
+    },
+    "logger3": {
+        "logDir": "log/",
+        "filePrefix": "fuck"
+    },
+    "logger4": {
+        "logDir": "logg/",
+        "filePrefix": "fuck"
+    }
+}

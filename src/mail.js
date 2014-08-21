@@ -22,7 +22,7 @@ var transporter = mail.createTransport({
 })
 
 
-var send = function(to, subject, content, success, error) {
+var send = function(obj, noQueue) {
     
     // add to queue
     var obj = {
@@ -32,8 +32,9 @@ var send = function(to, subject, content, success, error) {
         success: success,
         error: error
     };
-    
-    if(mailQueue[subject] == undefined) {      
+    if(noQueue) {
+        sendMail(obj);
+    } else if(mailQueue[subject] == undefined) {      
         sendMail(obj);
     } else {
         var timeDiff = new Date().valueOf() - mailQueue[subject].timestamp;
